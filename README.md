@@ -6,6 +6,7 @@
 /search -> 검색 페이지
 
 /users/:id -> 유저정보 수정
+/users/logout -> 로그아웃
 /users/remove -> 유저 삭제
 
 /videos/:id -> 비디오 시청
