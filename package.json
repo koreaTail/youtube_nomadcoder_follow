@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/koreaTail/youtube_nomadcoder_follow#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
