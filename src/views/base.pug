@@ -1,10 +1,11 @@
 doctype html
 html(lang='ko')
     head
-        title Wetube 
-        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+        title #{pageTitle} | Wetube
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css") 
     body
         main
-            h1 Welcome to wetube 
-        footer &copy; 2022 Wetube
+            h1=pageTitle
+            block content
+        include partials/footer
         
