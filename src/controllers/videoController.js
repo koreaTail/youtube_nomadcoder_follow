@@ -36,23 +36,32 @@ let videos = [
         rating: 5,
         comments: 2,
         createdAt: "2 minutes ago",
-        views: 56,
+        views: 1,
         id: 5,
     },
 ];
 
 export const trending = (req, res) => res.render("home", {pageTitle: "Home", videos: videos});
 export const see = (req, res) => {
-    // console.log(res.send(`watch Video #${req.params.id}`));
     const id = req.params.id;
     const video = videos[id-1];
-    res.render("watch", {pageTitle: `Watching ${video.title}`, video: video});
+    res.render("watch", {pageTitle: `Watching: ${video.title}`, video: video});
 };
-export const edit = (req, res) => res.render("edit");
+export const getEdit = (req, res) => {
+    const id = req.params.id;
+    const video = videos[id-1]
+    // console.log(req.params)
+    res.render("edit", {pageTitle: `Editing: ${video.title}`, video: video});
+};
+export const postEdit = (req, res) => {
+    const id = req.params.id;
+    const title = req.body.title;
+    videos[id-1].title = title;
+    return res.redirect(`/videos/${id}`);
+}
 export const search = (req, res) => res.send("search");
 export const upload = (req, res) => res.send("upload video");
 export const deleteVideo = (req, res) => {
-    console.log(req.params);
     res.send("delete video");
 };
 

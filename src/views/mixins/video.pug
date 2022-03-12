@@ -6,4 +6,4 @@ mixin video(x)
             li #{x.rating}/5
             li #{x.comments} comments 
             li Posted #{x.createdAt}
-            li #{x.views} views
+            li #{x.views} #{x.views === 1 ? "view" : "views"}

@@ -9,17 +9,18 @@ const app = express();
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src" + "/views");
+app.use(express.urlencoded({ extended: true }));
 app.use("/", globalRouter);
 app.use("/users", userRouter)
 app.use("/videos", videoRouter);
 
 const routerLogger = (req, res, next) => {
-    console.log("PATH", req.path);
+    // console.log("PATH", req.path);
     next();
 };
 
 const methodLogger = (req, res, next) => {
-    console.log("METHOD", req.method);
+    // console.log("METHOD", req.method);
     next();
 };
 
