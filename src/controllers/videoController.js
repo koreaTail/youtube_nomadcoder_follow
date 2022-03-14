@@ -65,3 +65,11 @@ export const deleteVideo = (req, res) => {
     res.send("delete video");
 };
 
+
+export const getUpload = (req, res) => {
+    return res.render("upload", {pageTitle: "Upload Video"});
+}
+
+export const postUpload = (req, res) => {
+    return res.redirect("/");
+}
