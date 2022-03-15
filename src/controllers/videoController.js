@@ -1,57 +1,23 @@
-let videos = [
-    {
-        title: "첫번째 영상",
-        rating: 5,
-        comments: 266,
-        createdAt: "122 minutes ago",
-        views: 1576,
-        id: 1,
-    },
-    {
-        title: "두번째 영상",
-        rating: 2,
-        comments: 86,
-        createdAt: "42 minutes ago",
-        views: 56,
-        id: 2,
-    },
-    {
-        title: "세번째 영상",
-        rating: 3,
-        comments: 42,
-        createdAt: "22 minutes ago",
-        views: 5633,
-        id: 3,
-    },
-    {
-        title: "넷번째 영상",
-        rating: 5,
-        comments: 22,
-        createdAt: "12 minutes ago",
-        views: 542,
-        id: 4,
-    },
-    {
-        title: "다섯번째 영상",
-        rating: 1,
-        comments: 1,
-        createdAt: "2 minutes ago",
-        views: 1,
-        id: 5,
-    },
-];
+import movieModel from "../models/Video";
 
-export const trending = (req, res) => res.render("home", {pageTitle: "Home", videos: videos});
+
+// movieModel.find({}, (error,videos)=>{
+//     console.log("error", error);
+//     console.log("videos", videos);
+// })
+
+export const trending = async (req, res) => {
+    const videos = await movieModel.find({});  
+    res.render("home", {pageTitle: "Home", videos: []})
+};
 export const see = (req, res) => {
     const id = req.params.id;
-    const video = videos[id-1];
-    res.render("watch", {pageTitle: `Watching: ${video.title}`, video: video});
+    res.render("watch", {pageTitle: `Watching`});
 };
 export const getEdit = (req, res) => {
     const id = req.params.id;
-    const video = videos[id-1]
     // console.log(req.params)
-    res.render("edit", {pageTitle: `Editing: ${video.title}`, video: video});
+    res.render("edit", {pageTitle: `Editing`});
 };
 export const postEdit = (req, res) => {
     const id = req.params.id;
