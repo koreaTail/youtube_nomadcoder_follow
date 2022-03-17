@@ -1,14 +1,15 @@
-import movieModel from "../models/Video";
+import Video from "../models/Video";
 
 
-// movieModel.find({}, (error,videos)=>{
-//     console.log("error", error);
+// Video.find({}, (error,videos)=>{
+//     console.log("error", error);x
 //     console.log("videos", videos);
 // })
 
-export const trending = async (req, res) => {
-    const videos = await movieModel.find({});  
-    res.render("home", {pageTitle: "Home", videos: []})
+export const home = async (req, res) => {
+        const videos = await Video.find({});  
+        console.log(videos)
+        return res.render("home", {pageTitle: "Home", videos})
 };
 export const see = (req, res) => {
     const id = req.params.id;
@@ -36,6 +37,20 @@ export const getUpload = (req, res) => {
     return res.render("upload", {pageTitle: "Upload Video"});
 }
 
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
+    const { title, description, hashtags  } = req.body;
+    await video.create ({
+        title: title,
+        description: description,
+        createdAt: Date.now(),
+        hashtags: hashtags.split(",").map((word)=>`#${word}`),
+        meta: {
+            views: 0,
+            rating: 0,
+        },
+    });
+    // await video.save();
+    // const dbVideo = await video.save();
+    // console.log(dbVideo)
     return res.redirect("/");
 }
